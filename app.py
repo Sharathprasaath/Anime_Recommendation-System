@@ -19,15 +19,16 @@ def log():
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
+        cnx=mysql.connector.connect(user='root', password='sharath123', host='127.0.0.1' , port='3306', database='flask')
+        cur=cnx.cursor()
         cur.execute('SELECT * FROM user WHERE username = %s', (username,))
         account = cur.fetchone()
-        print(username)
-        #print(account[0])
-        if account:
+        print(account[1])
+        if account[0]==username and account[1]==password:
             return render_template("mainpage.html")
         else:
             ms="invalid username or password!"
-    return render_template("index.html",ms=ms)
+            return render_template("index.html",ms=ms)
         
 @app.route("/reg", methods=['post'])
 def reg():
@@ -46,6 +47,8 @@ def reg():
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
             msg = 'Invalid email address !'
         else:
+            cnx=mysql.connector.connect(user='root', password='sharath123', host='127.0.0.1' , port='3306', database='flask')
+            cur=cnx.cursor()
             cur.execute('INSERT INTO user (username,password,email) VALUES (%s,%s,%s)', (username, password, email ))
             cnx.commit()
             msg = 'You have successfully registered !'
@@ -67,7 +70,7 @@ def predict():
      print(l)
      return render_template("mainpage.html",users=l)
     except:
-     return render_template("mainpage.html",err="Check the spelling or try another movie")
+     return render_template("mainpage.html",err="Check the spelling or try another anime")
 
 if __name__=='__main__':
     app.run(host='localhost',port=1000)
