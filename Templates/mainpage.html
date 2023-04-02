@@ -1,0 +1,114 @@
+<html>
+<style>
+body {
+  background-image: url('static/hisoka.jpeg');
+  background-size: cover;
+  background-position: top;
+  opacity:0.8;
+  
+  background-color: #f2f2f2;
+}
+h1 {
+  text-align: center;
+  font-family: Russo One;
+}
+h1::first-letter{color: #FC73ED;}
+
+/* style the input box */
+.input_box {
+  display: flex;
+ <!-- justify-content: right;-->
+}
+p{
+text-align: center;
+margin-left:500px;}
+
+  input[type="text"] {
+  margin-top: 150px;
+  margin-left: 500px;
+  width: 50%;
+  border: 2px solid #CE40BE;
+  font-size: 14px;
+  padding: 10px;
+  color: black;
+  background-color: white;
+  border-bottom: 2px solid #CE40BE;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  opacity: 0.8;
+  padding-right: 40px;
+  height: 40%;
+}
+
+/* style the search button */
+  button[type="submit"] {
+  margin-top: 150px;
+  position: relative;
+  font-size: 18px;
+  height: 40px;
+  padding: 20px;
+  background-color: #CE40BE;
+  border-radius: 8px;
+  border: none;
+}
+.center-icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+/* style the recommendations section */
+#recommendations {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+.rounded-list li:first-letter{
+  color: violet !important;
+}
+.rounded-list li::before {
+  font-size: 18px;
+  content: "\2022";  
+  color: red; 
+  font-weight: bold;
+  display: inline-block;
+  width: 1em; 
+ margin-left: 550px; 
+}
+</style>
+  <!DOCTYPE html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Anime Recommendation System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+   <!-- <link rel="stylesheet" href="static/styles.css"> -->
+  </head>
+  <body>
+   <form action="predict" method="post">
+    <h1>Anime Recommendation System</h1>
+    <div class="pred">
+    <div class="input_box">
+      <input name="name" type="text" placeholder="Enter anime name"/>
+      <button type="submit" class="center-icon"><i class="fas fa-search"></i></button>
+    </div>
+    </div>
+    <div id="myList"></div>
+    <ul class="rounded-list"> 
+                {% for user in users %} 
+                    <li style="opacity:0; transition: 200ms all;">{{ user }}</li> 
+                {% endfor %} 
+               </ul> 
+     <div class="ms" style="text-align:center;">{{err}}</div>
+    </form>
+  <script>
+        const items = document.querySelectorAll(".rounded-list li");
+        console.log(items)
+        
+        for (var i = 0; i < items.length; i++) {
+            const li = items[i]
+            setTimeout(() => { li.style.opacity = "1" }, 200*i)
+        }
+    </script>
+  </body>
+</html>

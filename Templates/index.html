@@ -1,0 +1,133 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+</head>
+<style>
+body {
+  background-image: url('static/demon flower.webp');
+  background-size: cover;
+  background-position: center;
+  font-family: "Open Sans", sans-serif;
+  justify-content: center;
+}
+body::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5); /* Set the color and opacity of the overlay */
+  z-index: -1; /* Set the z-index to ensure the overlay is behind the content */
+}
+.center{
+margin-top: 10%;
+margin-left: 36%;
+}
+.container {
+  width:30%;
+ <!-- background-image: linear-gradient(to bottom,rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)), url('static/demon flower.webp');-->
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  background-color: rgba(100%, 100%, 100%, 0.8);
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+h1 {
+  margin: 0 0 30px;
+  text-align: center;
+  font-size: 46px;
+  color: #CE40BE;
+}
+
+
+input {
+  width: 100%;
+  border: 2px solid #FC73ED;
+  font-size: 14px;
+  padding: 10px;
+  color: black;
+  background-color: white;
+  border-radius:8px;
+  margin-bottom: 20px;
+}
+.input_box {
+  position: relative;
+}
+
+.input_box input {
+  padding-left: 50px; /* adjust the value as needed */
+}
+
+.input_box i {
+  position: absolute;
+  left: 10px; /* adjust the value as needed */
+  top: 50%;
+  transform: translateY(-170%);
+  color:black;
+}
+.icons{color:black;}
+
+.button {
+  display: block;
+  margin: 30px auto 0;
+  background-color: #FC73ED;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  animation-name: rotate;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+.button:hover {
+  background-color: #FC73ED;
+}
+
+.signup {
+  margin-top: 20px;
+  font-size: 16px;
+  color: black;
+  text-align: center;
+}
+
+.signup a {
+  color: purple;
+  text-decoration: none;
+}
+
+.signup a:hover {
+  text-decoration: underline;
+}
+
+</style>
+<body>
+<form action="/log" method="post">
+    <div class="center"> 
+      <div class="container"> 
+        <!--<img scr="static/anime background.jpg">-->
+        <h1>Login</h1><br></br>
+        <div class="input_box">
+          <i class="fas fa-user"></i>
+          <input name="username" type="text" placeholder="Enter username" required/><br></br>
+        </div>
+        <div class="input_box">
+          <i class="fas fa-lock"></i>
+          <input name="password" type="password" placeholder="Enter password" required/><br></br>
+        </div>
+        <button type="submit" class="button">Login</button>
+        <p class="signup">Not a member? <a href="{{url_for('register')}}">Register now</a>.</p><br>
+        <div class="ms" style="text-align:center;">{{ms}}</div>
+      </div>
+    </div>
+  </body>
+</html>
